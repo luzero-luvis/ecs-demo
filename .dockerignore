@@ -1,0 +1,10 @@
+.git
+.gitignore
+*.md
+terraform/
+scripts/
+Makefile
+.env*
+__pycache__
+*.pyc
+*.pyo

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ECR Demo App</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .badge {
+      display: inline-block;
+      background: #1f6feb;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    h1 { font-size: 28px; color: #f0f6fc; margin-bottom: 8px; }
+    .subtitle { color: #8b949e; margin-bottom: 30px; font-size: 14px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .stat-label { font-size: 11px; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .stat-value { font-size: 15px; color: #58a6ff; font-weight: 600; word-break: break-all; }
+    .links { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .link {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid #30363d;
+      color: #c9d1d9;
+      transition: background 0.15s;
+    }
+    .link:hover { background: #21262d; }
+    .link.primary { background: #1f6feb; border-color: #1f6feb; color: #fff; }
+    .link.primary:hover { background: #388bfd; }
+    .ecr-flow {
+      margin-top: 28px;
+      border-top: 1px solid #21262d;
+      padding-top: 24px;
+    }
+    .ecr-flow h3 { font-size: 14px; color: #8b949e; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .steps { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .step {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .step.active { border-color: #238636; color: #3fb950; }
+    .arrow { color: #30363d; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <span class="badge">ECR Demo</span>
+    <h1>Hello from ECR!</h1>
+    <p class="subtitle">This container was built, pushed to Amazon ECR, and is now running.</p>
+
+    <div class="grid">
+      <div class="stat">
+        <div class="stat-label">Version</div>
+        <div class="stat-value">{{ version }}</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Environment</div>
+        <div class="stat-value">{{ environment }}</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Hostname</div>
+        <div class="stat-value">{{ hostname }}</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Timestamp</div>
+        <div class="stat-value">{{ timestamp }}</div>
+      </div>
+    </div>
+
+    <div class="ecr-flow">
+      <h3>ECR Workflow</h3>
+      <div class="steps">
+        <div class="step active">Build Image</div>
+        <div class="arrow">→</div>
+        <div class="step active">Authenticate</div>
+        <div class="arrow">→</div>
+        <div class="step active">Tag</div>
+        <div class="arrow">→</div>
+        <div class="step active">Push to ECR</div>
+        <div class="arrow">→</div>
+        <div class="step active">Pull &amp; Run</div>
+      </div>
+    </div>
+
+    <div class="links">
+      <a class="link primary" href="/health">Health Check</a>
+      <a class="link" href="/info">Image Info</a>
+    </div>
+  </div>
+</body>
+</html>
